@@ -138,7 +138,7 @@ def pmf_cdf(data):
          cdf.append(total/len(data))
          
     # return the three lists (replace the empty ones)
-    return values, pmf, cdf
+    return values, pmf,  cdf
 
 # The median: the first value where the CDF reaches 1/2
 # (0 if there are no values)
