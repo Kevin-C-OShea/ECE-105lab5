@@ -65,13 +65,17 @@ length(6) is 9 and peak(6) is 16
 @lru_cache(maxsize=None)
 def length(n):
     # the base case, then the recursive case (replace return 0)
-    return 0
+    if(n==1):
+        return 1
+    return 1+ length(c(n))
 
 # Largest number in the Collatz sequence from n >= 1
 @lru_cache(maxsize=None)
 def peak(n):
     # the base case, then the recursive case (replace return 0)
-    return 0
+    if(n==1):
+        return 1
+    return max(n, peak(c(n)))
 
 """
 COMPLETE (#2):
@@ -114,15 +118,22 @@ cdf    is [0.2, 0.3, 0.4, 0.7, 0.8, 0.9, 1.0]
 # The values in data, and their PMF and CDF
 def pmf_cdf(data):
     # 1. counts
-    pass
+    counts = Counter(data)
     # 2. values
-    pass
+    values = sorted(counts.keys())
     # 3. pmf
-    pass
+    pmf=[]
+    for value in values:
+        pmf.append(counts[value]/len(data))
     # 4. cdf
-    pass
+    cdf=[]
+    total =0 
+    for value in values:
+         total = total + counts[value]
+         cdf.append(total/len(data))
+         
     # return the three lists (replace the empty ones)
-    return [], [], []
+    return values, pmf, cdf
 
 # The median: the first value where the CDF reaches 1/2
 # (0 if there are no values)
